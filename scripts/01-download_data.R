@@ -1,26 +1,36 @@
 #### Preamble ####
-# Purpose: Downloads and saves the data from [...UPDATE THIS...]
-# Author: Rohan Alexander [...UPDATE THIS...]
-# Date: 11 February 2023 [...UPDATE THIS...]
-# Contact: rohan.alexander@utoronto.ca [...UPDATE THIS...]
+# Purpose: Downloads and saves the data from Harvard's 2020 Cooperative Election Study (CES).
+# Author: Sima Shmuylovich
+# Contact: sima.shmuylovich@mail.utoronto.ca
 # License: MIT
-# Pre-requisites: [...UPDATE THIS...]
-# Any other information needed? [...UPDATE THIS...]
+# Pre-requisites: Install tidyverse and dataverse packages. 
 
 
 #### Workspace setup ####
-library(opendatatoronto)
 library(tidyverse)
-# [...UPDATE THIS...]
+library(dataverse)
+
+#### Identify variables of interest ####
+voting_var = c("votereg", "CC20_410")
+identity_based_var = c("gender", "birthyr", "race")
+socio_economic_var = c("educ", "employ", "faminc_new")
+regional_var = c("region", "urbancity", "inputstate")
 
 #### Download data ####
-# [...ADD CODE HERE TO DOWNLOAD...]
-
-
+raw_data <-
+  get_dataframe_by_name(
+    filename = "CES20_Common_OUTPUT_vv.csv",
+    dataset = "10.7910/DVN/E9N6PH",
+    server = "dataverse.harvard.edu",
+    .f = read_csv
+  ) |>
+  select(
+    all_of(voting_var),
+    all_of(identity_based_var),
+    all_of(socio_economic_var),
+    all_of(regional_var)
+  ) 
 
 #### Save data ####
-# [...UPDATE THIS...]
-# change the_raw_data to whatever name you assigned when you downloaded it.
-write_csv(the_raw_data, "inputs/data/raw_data.csv") 
-
+write_csv(raw_data, "data/raw_data/raw_data.csv")
          
