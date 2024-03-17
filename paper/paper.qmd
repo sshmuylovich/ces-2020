@@ -90,8 +90,6 @@ ggplot(voting_age, aes(x = age, y = value, color = variable, group = variable)) 
   theme_minimal()
 ```
 
-\newpage
-
 Race was picked as one of the identity-based variables because different racial and ethnic groups have unique historical and social experiences that influence their political views and behaviors. For example, policies on immigration, law enforcement, and affirmative action may be viewed differently by voters of different racial backgrounds. The Pew Research Center found that in the 2022 midterms, Black voters supported Democrats by overwhelming margins: 93% voted for Democrats while only 5% supported Republicans, similar to levels of support in 2020, 2018 and 2016 [@citePewRace]. A visualization of the proportion of votes by race in the 2020 election can be found here, @fig-race_prop.
 
 ## Socio-Economic Variables
