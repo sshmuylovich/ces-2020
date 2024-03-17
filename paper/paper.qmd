@@ -6,7 +6,7 @@ author:
 thanks: "Code and data are available at: https://github.com/sshmuylovich/us-election-2020.git"
 date: March 16, 2024
 date-format: long
-abstract: "This study examines the factors that shaped support for the United States of America's Presidential Candidates, Joeseph Biden and Donald J. Trump, during the 2020 federal election. Analyzing identity-based, socio-economic, and regional variables, we discovered that factors such as gender, age, race, education level, employment status, income, region, urban status, and specific state affiliations significantly influenced voter preferences. Our findings reveal that higher education levels and unemployment were positively associated with support for Biden, while older age groups, males, and certain racial demographics showed varied levels of support between the candidates. Regionally, urban areas and specific states like the District of Columbia showed stronger preferences for Biden, highlighting the geographical and socio-economic divides within the electorate. These insights offer a comprehensive understanding of the 2020 election dynamics, enabling more informed predictions for the upcoming 2024 election (for which many analysts predict the same candidates). This research contributes to a better grasp of American political affiliations, assisting citizens and policymakers in adapting to evolving electoral trends."
+abstract: "This study examines the factors that shaped support for the United States of America's Presidential Candidates, Joseph Biden and Donald J. Trump, during the 2020 federal election. Analyzing identity-based, socio-economic, and regional variables, we discovered that factors such as gender, age, race, education level, employment status, income, region, urban status, and state significantly influenced voter preferences. Our findings reveal that higher education levels and unemployment were positively associated with support for Biden, while older age groups, males, and certain racial demographics showed varied levels of support between the candidates. Regionally, urban areas and specific states like the District of Columbia showed stronger preferences for Biden, highlighting the geographical and socio-economic divides within the electorate. These insights offer a comprehensive understanding of the 2020 election dynamics, enabling more informed predictions for the upcoming 2024 election (for which many analysts predict the same candidates). This research contributes to a better grasp of American political affiliations, assisting citizens and policymakers in adapting to evolving electoral trends."
 format: pdf
 toc: true
 number-sections: true
@@ -149,7 +149,7 @@ voting_state_map %>%
        title = "Proportion of Votes by US State")
 ```
 
-## Measurment
+## Measurement
 Age was calculated in years based on the year of birth the respondent inputted. Gender and Race were given a number with a corresponding label based on which radio button the respondent selected. When cleaning the data the following changes were made to the raw data: age was categorized as seen in @tbl-age_var, gender was limited to Male and Female, and race was mapped from a number to the categories seen in @tbl-race_var. 
 
 A preview of the identity-based variables used in this paper can be seen in @tbl-identity_based_var.
@@ -210,7 +210,7 @@ Define $y_j$ as who the respondent voted for and equal to 1 if Joe Biden and 0 i
 
 \begin{align} 
 y_j|\pi_j &\sim \mbox{Bern}(\pi_j) \\
-\text{logit}(\pi_j) &= \beta_0 + \beta_1 \times \text{education}_j + \beta_2 \times \text{eployment status}_j + \beta_3 \times \text{income}_j\\
+\text{logit}(\pi_j) &= \beta_0 + \beta_1 \times \text{education}_j + \beta_2 \times \text{employment status}_j + \beta_3 \times \text{income}_j\\
 \beta_0 &\sim \text{Normal}(0, 2.5)\\
 \beta_1 &\sim \text{Normal}(0, 2.5) \\ 
 \beta_2 &\sim \text{Normal}(0, 2.5) \\ 
@@ -443,7 +443,7 @@ data.frame(education = unique(election_data$education)) %>%
 ```{r, echo=FALSE}
 #| label: tbl-employment_status_var
 #| tbl-cap: Eployment status variable values
-data.frame(emoloyment_status = unique(election_data$employment_status)) %>%
+data.frame(employment_status = unique(election_data$employment_status)) %>%
   kable()
 ```
 
