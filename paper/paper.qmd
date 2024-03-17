@@ -6,7 +6,7 @@ author:
 thanks: "Code and data are available at: https://github.com/sshmuylovich/us-election-2020.git"
 date: March 16, 2024
 date-format: long
-abstract: "This study examines the factors that shaped support for the United States of America's Presidential Candidates, Joeseph Bidon and Donald J. Trump, during the 2020 federal election. Analyzing identity-based, socio-economic, and regional variables, we discovered that ... ... These insights offer a comprehensive understanding of the 2020 election dynamics, enabling more informed predictions for the upcoming 2024 election (potentially with the same candidates). This research contributes to a better grasp of American political aﬀiliations, assisting citizens and policymakers in adapting to evolving electoral trends."
+abstract: "This study examines the factors that shaped support for the United States of America's Presidential Candidates, Joeseph Biden and Donald J. Trump, during the 2020 federal election. Analyzing identity-based, socio-economic, and regional variables, we discovered that factors such as gender, age, race, education level, employment status, income, region, urban status, and specific state affiliations significantly influenced voter preferences. Our findings reveal that higher education levels and unemployment were positively associated with support for Biden, while older age groups, males, and certain racial demographics showed varied levels of support between the candidates. Regionally, urban areas and specific states like the District of Columbia showed stronger preferences for Biden, highlighting the geographical and socio-economic divides within the electorate. These insights offer a comprehensive understanding of the 2020 election dynamics, enabling more informed predictions for the upcoming 2024 election (for which many analysts predict the same candidates). This research contributes to a better grasp of American political affiliations, assisting citizens and policymakers in adapting to evolving electoral trends."
 format: pdf
 toc: true
 number-sections: true
@@ -29,13 +29,12 @@ library(modelsummary)
 ```
 
 # Introduction {#sec-introduction}
-The 2020 federal elections saw Democrat Joesph Biden defeat Republican Donald J. Trump, winning 306 of 538 electoral votes, to become the 46th President of the United States (@citeTODO). With the 47th federal election quickly approaching in 2024 and both Biden and Trump being the presumptive nominees for their respective political parties (@citeTODO), this paper conducts an analysis on support for these two politicians, specifically examining identity-based, socio-economic, and regional variables. The estimand of interest in this research is the average causal effect of these variables on the likelihood of individuals expressing support for either Democratic Candidate Biden or Republican Candidate Trump.
+The 2020 federal elections saw Joseph Biden winning 306 of 538 electoral votes, defeating Donald J. Trump to become the 46th President of the United States [@citeElectoralVotes]. With the 47th federal election quickly approaching in 2024 and both Biden and Trump being the presumptive nominees for their respective political parties, this paper conducts an analysis on support for these two politicians, specifically examining identity-based, socio-economic, and regional variables. The estimand of interest in this research is the average causal effect of these variables on the likelihood of individuals expressing support for either Democratic Candidate Biden or Republican Candidate Trump.
 
-By delving into identity-based (gender, age, and race), socio-economic (education level, employment status, and income), and regional factors (region, urban status, and state), this paper seeks to illuminate the multifaceted influences that shaped political support in the 2020 US Election. The objective is to unravel the complex dynamics that dictated electoral outcomes, thereby providing a better understanding of the American political landscape and a better ability to forecast potential shifts in voter alignment in anticipation of future elections.
+By delving into identity-based (gender, age, and race), socio-economic (education level, employment status, and income), and regional factors (region, urban status, and state), this paper seeks to illuminate the multifaceted influences that shape political support via a case study in the 2020 US Election. The objective is to unravel the complex dynamics that dictate electoral outcomes, thereby providing a better understanding of the American political landscape and a better ability to forecast potential shifts in voter alignment.
 
 The subsequent sections follow a structured format. @sec-data outlines the source and variables central to our analysis. @sec-model details the construction and methodology of the statistical models used. @sec-results presents the key findings of our analysis, while @sec-discussion critically reviews the content, addresses the implications of the results, acknowledges model limitations, and suggests potential research directions.
 
-\newpage
 # Data {#sec-data}
 ```{r}
 #| include: false
@@ -49,15 +48,13 @@ The data used in this paper was gathered from the 2020 Cooperative Election Stud
 
 ## Cooperative Election Study 2020
 
-The Cooperative Election Study (CES), previously known as the Cooperative Congressional Election Study, is an extensive research project aimed at understanding the intricacies of American electoral behavior, particularly focusing on congressional elections. Initiated in 2006, the CES has evolved to capture the nuances of how Americans perceive their representatives, their voting patterns, and the overall electoral experience, emphasizing the influence of political geography and social context. The methodology and scale of this study allow for an in-depth analysis of legislative constituencies across the United States, offering a unique perspective on the democratic process at both state and national levels [@citeCES].
-
-The 2020 CES survey was conducted over the Internet by YouGov, a British international Internet-based market research and data analytics firm. Participants were interviewed from September 29 to November 2, 2020 (for pre-election data), and from November 8 to December 14, 2020 (for post-election data). A total of 61000 participants were interviewed for pre-election and 51551 returned for post-election interviews. The dataset includes 717 variables, many of which could have been included in the analysis but was narrowed down to 9 variables that could correlate with candidate support. These variables are gathered from the CPS portion of the survey with no open-ended answers and assigned numerical values with labels.The data was released on March 26, 2021 [@citeCES].
+The Cooperative Election Study (CES), previously known as the Cooperative Congressional Election Study, is an extensive research project aimed at understanding the intricacies of American electoral behavior [@citeCES]. The 2020 CES survey was conducted over the Internet by YouGov, a British international Internet-based market research and data analytics firm [@citeYouGov]. Participants were interviewed from September 29 to November 2, 2020 (for pre-election data), and from November 8 to December 14, 2020 (for post-election data). A total of 61000 participants were interviewed for pre-election and 51551 returned for post-election interviews. The dataset includes 717 variables, many of which could have been included in the analysis but was narrowed down to 9 variables that could correlate with candidate support. These variables are gathered from the CPS portion of the survey with no open-ended answers and assigned numerical values with labels.The data was released on March 26, 2021 [@citeCES].
 
 ## Identity-Based Variables
 
-Gender was picked as one of the identity-based variables because gender can influence an individual's policy preferences. For instance, women might prioritize issues such as healthcare, reproductive rights, and gender equality more than men. Understanding gender differences in voting behavior can help in analyzing how these issues impact elections. From a preliminary look at @fig-gender_prop, we can see that gender does influence voting behavior, this paper aims to further analysis how.  
+Gender was picked as one of the identity-based variables because gender can influence an individual's policy preferences. For instance, women might prioritize issues such as healthcare, reproductive rights, and gender equality more than men. Understanding gender differences in voting behavior can help in analyzing how these issues impact elections. A visualization of the proportion of votes by gender in the 2020 election can be found here, @fig-gender_prop.  
 
-Age was picked as one of the identity-based variables because different age groups often hold distinct values and perspectives shaped by their generational experiences. For instance, younger voters may prioritize climate change, education, and jobs, while older voters may focus on healthcare, social security, and national security. From a preliminary look at @fig-age_prop, we can see that age influences voting behavior, this paper aims to further analysis how.
+Age was picked as one of the identity-based variables because different age groups often hold distinct values and perspectives shaped by their generational experiences. For instance, younger voters may prioritize climate change, education, and jobs, while older voters may focus on healthcare, social security, and national security. A visualization of the proportion of votes by age in the 2020 election can be found here, @fig-age_prop.
 
 ```{r}
 #| include: false
@@ -86,31 +83,33 @@ ggplot(voting_age, aes(x = age, y = value, color = variable, group = variable)) 
   geom_line() + # Draw lines
   geom_point() + # Add points to indicate actual data points
   scale_color_manual(values = c("Biden" = "#0A3161", "Trump" = "#E81B23")) +
-  labs(title = "Proportion of Votes for Joe Biden or Donald Trump by Age",
+  labs(title = "Proportion of Votes by Age",
        x = "Age",
        y = "Proportion of Votes",
        color = "Presidential Candidate") +
   theme_minimal()
 ```
 
-Race was picked as one of the identity-based variables because different racial and ethnic groups have unique historical and social experiences that influence their political views and behaviors. For example, policies on immigration, law enforcement, and affirmative action may be viewed differently by voters of different racial backgrounds. The Pew Research Center found that in the 2022 midterms, Black voters supported Democrats by overwhelming margins: 93% voted for Democrats while only 5% supported Republicans. This is similar to levels of support in 2020, 2018 and 2016 [@citePewRace]. From a preliminary look at @fig-race_prop, we can see that race influences voting behavior, this paper aims to further analysis how.
+\newpage
+
+Race was picked as one of the identity-based variables because different racial and ethnic groups have unique historical and social experiences that influence their political views and behaviors. For example, policies on immigration, law enforcement, and affirmative action may be viewed differently by voters of different racial backgrounds. The Pew Research Center found that in the 2022 midterms, Black voters supported Democrats by overwhelming margins: 93% voted for Democrats while only 5% supported Republicans, similar to levels of support in 2020, 2018 and 2016 [@citePewRace]. A visualization of the proportion of votes by race in the 2020 election can be found here, @fig-race_prop.
 
 ## Socio-Economic Variables
 
-Education was picked as one of the socio-economic variables because education level is closely linked to an individual's policy preferences and political awareness. Higher education levels often correlate with more liberal attitudes on social issues and a greater engagement in political processes. From a preliminary look at @fig-education_prop, we can see that education influences voting behavior, this paper aims to further analysis how.
+Education was picked as one of the socio-economic variables because education level is closely linked to an individual's policy preferences and political awareness. Higher education levels often correlate with more liberal attitudes on social issues and a greater engagement in political processes. A visualization of the proportion of votes by education in the 2020 election can be found here, @fig-education_prop.
 
-Employment status was picked as one of the socio-economic variables because employment status directly affects an individual's economic security and outlook, influencing their priorities at the polls. For example, unemployed or underemployed voters might prioritize job creation, economic recovery, and social safety nets more highly than those securely employed. From a preliminary look at @fig-employment_status_prop, we can see that employment status influences voting behavior, this paper aims to further analysis how.
+Employment status was picked as one of the socio-economic variables because employment status directly affects an individual's economic security and outlook, influencing their priorities at the polls. For example, unemployed or underemployed voters might prioritize job creation, economic recovery, and social safety nets more highly than those securely employed. A visualization of the proportion of votes by employment status in the 2020 election can be found here, @fig-employment_status_prop.
 
-Income was picked as one of the socio-economic variables because income levels influence voters' economic interests, with higher-income individuals potentially prioritizing tax policies and economic strategies that favor wealth preservation, while lower-income voters might focus on income redistribution, minimum wage increases, and access to affordable healthcare. From a preliminary look at @fig-income_prop, we can see that income influences voting behavior, this paper aims to further analysis how.
+Income was picked as one of the socio-economic variables because income levels influence voters' economic interests, with higher-income individuals potentially prioritizing tax policies and economic strategies that favor wealth preservation, while lower-income voters might focus on income redistribution, minimum wage increases, and access to affordable healthcare. A visualization of the proportion of votes by income in the 2020 election can be found here, @fig-income_prop.
 
 ## Regional Variables
 
 Region was picked as one of the regional variables because different regions in a country often have unique cultural and historical contexts that shape residents' values, attitudes, and political leanings. For example, historical voting patterns, regional industries, and local issues can significantly influence regional voting behaviors.
-Furthermore, specific issues may be more pressing in certain regions than others, such as environmental concerns in areas prone to climate-related disasters or economic policies in regions dominated by particular industries. From a preliminary look at @fig-region_prop, we can see that region does influence voting behavior, this paper aims to further analysis how.  
+Furthermore, specific issues may be more pressing in certain regions than others, such as environmental concerns in areas prone to climate-related disasters or economic policies in regions dominated by particular industries. A visualization of the proportion of votes by region in the 2020 election can be found here, @fig-region_prop.
 
-Urban status was picked as one of the regional variables because urban, suburban, and rural areas differ markedly in their socio-economic and demographic compositions. These differences can lead to distinct political priorities and voting behaviors, with urban areas often leaning more towards progressive policies and rural areas favoring conservative stances, influenced by factors like population density, diversity, and economic opportunities. The concentration of services and infrastructure in urban areas, as opposed to their scarcity in rural regions, can influence voter concerns and priorities, such as public transportation, education, and healthcare services. From a preliminary look at @fig-urban_status_prop, we can see that age influences voting behavior, this paper aims to further analysis how.
+Urban status was picked as one of the regional variables because urban, suburban, and rural areas differ markedly in their socio-economic and demographic compositions. These differences can lead to distinct political priorities and voting behaviors, with urban areas often leaning more towards progressive policies and rural areas favoring conservative stances, influenced by factors like population density, diversity, and economic opportunities. The concentration of services and infrastructure in urban areas, as opposed to their scarcity in rural regions, can influence voter concerns and priorities, such as public transportation, education, and healthcare services. A visualization of the proportion of votes by urban status in the 2020 election can be found here, @fig-urban_status_prop.
 
-State was picked as one of the regional variables because state-level policies and governance can significantly affect residents' lives, influencing their political preferences. Issues such as education, healthcare, taxation, and environmental regulation can vary widely by state, affecting voting behavior. Some states also have a higher electoral significance due to their size, demographic composition, or status as swing states. Understanding the political dynamics at the state level is crucial for predicting and analyzing election outcomes, especially in systems like the United States' Electoral College. From a preliminary look at @fig-state_prop, we can see that age influences voting behavior, this paper aims to further analysis how.
+State was picked as one of the regional variables because state-level policies and governance can significantly affect residents' lives, influencing their political preferences. Issues such as education, healthcare, taxation, and environmental regulation can vary widely by state, affecting voting behavior. Some states also have a higher electoral significance due to their size, demographic composition, or status as swing states. Understanding the political dynamics at the state level is crucial for predicting and analyzing election outcomes, especially in systems like the United States' Electoral College. A visualization of the proportion of votes by state in the 2020 election can be found here, @fig-state_prop.
 
 ```{r}
 #| include: false
@@ -146,7 +145,7 @@ voting_state_map %>%
   theme(axis.line = element_blank(),
         axis.text = element_blank(),
         axis.ticks = element_blank()) +
-  labs(fill = "Proportion Voting \nfor Biden",
+  labs(fill = "Proportion of Votes \nfor Biden",
        title = "Proportion of Votes by US State")
 ```
 
@@ -187,9 +186,8 @@ head(election_data, 5) %>%
   kable()
 ```
 
-It is important to note that this study is only interested in participants who were registered to vote in the 2020 election and who voted for either Biden or Trump, this was reflectcted in the data cleaning process.
+It is important to note that this study is only interested in participants who were registered to vote in the 2020 election and who voted for either Biden or Trump, this was reflected in the data cleaning process.
 
-\newpage
 # Model {#sec-model}
 For a comprehensive analysis of how identity-based, socio-economic, and regional factors influenced voting behavior in the 2020 US Election, a generalized linear model (GLM) is an effective statistical approach. Given the nature of the dependent variable which is binary (voted for Joe Biden vs. Donald Trump), logistic regression is a suitable model within the GLM framework. This model predicts the log-odds of the outcome as a linear combination of the independent variables.
 
@@ -205,7 +203,7 @@ y_i|\pi_i &\sim \mbox{Bern}(\pi_i) \\
 \beta_3 &\sim \text{Normal}(0, 2.5)
 \end{align}
 
-We run the model in R [@citeR] using the `rstanarm` package of @rstanarm. We use the default priors from `rstanarm`. The use of Normal(0, 2.5) priors is a conservative choice that imposes minimal prior beliefs on the magnitude of the coefficients. It is used in Bayesian logistic regression to reflect a lack of strong prior knowledge while still allowing the data to inform the final posterior distributions.
+We run the model in R [@citeR] using the `rstanarm` package of [@rstanarm]. We use the default priors from `rstanarm`. The use of Normal(0, 2.5) priors is a conservative choice that imposes minimal prior beliefs on the magnitude of the coefficients. It is used in Bayesian logistic regression to reflect a lack of strong prior knowledge while still allowing the data to inform the final posterior distributions.
 
 ## Socio-Economic Model Setup
 Define $y_j$ as who the respondent voted for and equal to 1 if Joe Biden and 0 if Donald Trump. Then education, employment status, and income are the respective answers of the respondent.
@@ -219,7 +217,7 @@ y_j|\pi_j &\sim \mbox{Bern}(\pi_j) \\
 \beta_3 &\sim \text{Normal}(0, 2.5)
 \end{align}
 
-We run the model in R [@citeR] using the `rstanarm` package of @rstanarm. We use the default priors from `rstanarm`. The use of Normal(0, 2.5) priors is a conservative choice that imposes minimal prior beliefs on the magnitude of the coefficients. It is used in Bayesian logistic regression to reflect a lack of strong prior knowledge while still allowing the data to inform the final posterior distributions.
+We run the model in R [@citeR] using the `rstanarm` package of [@rstanarm]. We use the default priors from `rstanarm`. The use of Normal(0, 2.5) priors is a conservative choice that imposes minimal prior beliefs on the magnitude of the coefficients. It is used in Bayesian logistic regression to reflect a lack of strong prior knowledge while still allowing the data to inform the final posterior distributions.
 
 ## Regional Model Setup
 Define $y_k$ as who the respondent voted for and equal to 1 if Joe Biden and 0 if Donald Trump. Then region, urban status, and state are the respective answers of the respondent.
@@ -233,9 +231,8 @@ y_k|\pi_k &\sim \mbox{Bern}(\pi_k) \\
 \beta_3 &\sim \text{Normal}(0, 2.5)
 \end{align}
 
-We run the model in R [@citeR] using the `rstanarm` package of @rstanarm. We use the default priors from `rstanarm`. The use of Normal(0, 2.5) priors is a conservative choice that imposes minimal prior beliefs on the magnitude of the coefficients. It is used in Bayesian logistic regression to reflect a lack of strong prior knowledge while still allowing the data to inform the final posterior distributions.
+We run the model in R [@citeR] using the `rstanarm` package of [@rstanarm]. We use the default priors from `rstanarm`. The use of Normal(0, 2.5) priors is a conservative choice that imposes minimal prior beliefs on the magnitude of the coefficients. It is used in Bayesian logistic regression to reflect a lack of strong prior knowledge while still allowing the data to inform the final posterior distributions.
 
-\newpage
 # Results {#sec-results}
 ```{r}
 #| echo: false
@@ -259,7 +256,7 @@ regional_model <-
 #| echo: false
 #| eval: true
 #| label: tbl-identity_based_model_results
-#| tbl-cap: "Explanatory model of support for the 2020 Presidential Candidates based on gender, age, and race"
+#| tbl-cap: "Model of support for the 2020 Presidential Candidates based on gender, age, and race"
 #| warning: false
 #| fig-height: 5
 #| scale: 
@@ -271,11 +268,14 @@ kable(identity_based_coefficients,
       digits = 2) 
 ```
 
+This table presents the estimates for how gender, age, and race affected voter preferences. Key observations include:
+being male (genderMale) negatively impacted the likelihood of voting for Biden by -0.27, suggesting a gender divide; age groups 30-44, 45-64, and 65+ all had negative impacts on Biden support, with coefficients of -0.37, -0.94, and -1.03, respectively, indicating a trend where older voters were more likely to support Trump; Black voters were significantly more likely to support Biden (+1.70), while Hispanic, Other, and White races showed less likelihood (with coefficients of -0.24, -1.09, and -0.77, respectively) to vote for Biden over Trump.
+
 ```{r}
 #| echo: false
 #| eval: true
 #| label: fig-identity_based_coefficient_estimates
-#| fig-cap: "Explanatory graph of support for the 2020 Presidential Candidates based on gender, age, and race"
+#| fig-cap: "Graph of support for the 2020 Presidential Candidates based on gender, age, and race"
 #| warning: false
 
 identity_based_coefficients <- tidy(identity_based_model, conf.int = TRUE)
@@ -288,17 +288,20 @@ identity_based_coefficients %>%
   labs(title = "Identity-Based Coefficient Estimates",
        x = "Estimate", y = "Coefficient", color = "Presidential Candidate") +
   scale_color_manual(values = c("Biden" = "#0A3161", "Trump" = "#E81B23")) +  # Custom colors
-  theme(axis.text.y = element_text(size = 5),
+  theme(axis.text.y = element_text(size = 7),
         legend.position = "bottom")  # Move legend to bottom
 ```
 
+This figure visualizes the coefficient estimates from @tbl-identity_based_model_results, showing how each identity-based factor (gender, age, and race) influences the odds of voting for Biden versus Trump. The negative coefficients for genders, age groups, and certain races would appear below the zero line, indicating a decrease in the likelihood of voting for Biden. The positive coefficient for raceBlack and the negative coefficients for other races indicate a significant racial divide. Gender also played a crucial role, with males being less likely to vote for Biden. Age differences further accentuated these divides, with older voters being more inclined towards Trump. 
+
+\newpage
 ## Socio-Economic Results
 
 ```{r}
 #| echo: false
 #| eval: true
 #| label: tbl-socio_economic_model_results
-#| tbl-cap: "Explanatory model of support for the 2020 Presidential Candidates based on education, employment status, and income"
+#| tbl-cap: "Model of support for the 2020 Presidential Candidates based on education, employment status, and income"
 #| warning: false
 #| fig-height: 5
 #| scale: 
@@ -310,11 +313,14 @@ kable(socio_economic_coefficients,
       digits = 2) 
 ```
 
+This table examines the effects of education, employment status, and income on voting preferences. Key observations include: higher education levels (e.g., postgraduate study +0.25) positively influenced Biden support, while lower education levels (high school or less -1.09) were detrimental; unemployment was associated with a higher likelihood of voting for Biden (+0.41), reflecting economic grievances; lower income brackets (<$30,000 +0.56) showed stronger support for Biden, suggesting economic factors played a significant role in voting behavior.
+
+\newpage
 ```{r}
 #| echo: false
 #| eval: true
 #| label: fig-socio_economic_coefficient_estimates
-#| fig-cap: "Explanatory graph of support for the 2020 Presidential Candidates based on education, employment status, and income"
+#| fig-cap: "Graph of support for the 2020 Presidential Candidates based on education, employment status, and income"
 #| warning: false
 
 socio_economic_coefficients <- tidy(socio_economic_model, conf.int = TRUE)
@@ -326,15 +332,19 @@ socio_economic_coefficients %>%
   labs(title = "Socio-Economic Coefficient Estimates",
        x = "Estimate", y = "Coefficient", color = "Presidential Candidate") +
   scale_color_manual(values = c("Biden" = "#0A3161", "Trump" = "#E81B23")) +  # Custom colors
-  theme(axis.text.y = element_text(size = 5),
+  theme(axis.text.y = element_text(size = 7),
         legend.position = "bottom")  # Move legend to bottom
 ```
 
+This figure graphically represents the findings from @tbl-socio_economic_model_results, illustrating the varying impacts of socio-economic factors on voter preferences. The positive and negative coefficients indicate increased or decreased likelihoods of supporting Biden, visualizing the socio-economic divides within the electorate. Education emerged as a strong predictor, with higher education levels correlating with Biden support. Employment status and income levels further highlighted economic concerns among voters, with lower income brackets and unemployed individuals more likely to support Biden. 
+
+\newpage
+## Regional Results
 ```{r}
 #| echo: false
 #| eval: true
 #| label: tbl-regional_model_results
-#| tbl-cap: "Explanatory model of support for the 2020 Presidential Candidates based on region, urban status, and state"
+#| tbl-cap: "Model of support for the 2020 Presidential Candidates based on region, urban status, and state"
 #| warning: false
 #| fig-height: 5
 #| scale: 
@@ -346,13 +356,13 @@ kable(regional_coefficients,
       digits = 2) 
 ```
 
-## Regional Results
+This table provides a detailed analysis of how region, urban status, and specific states influenced voting behavior. Key observations include: certain regions (e.g., the Northeast +0.04 and West +0.05) and urban statuses (Suburb -0.60) had distinct effects on voting preferences, with rural areas significantly less likely to support Biden (-1.36); the District of Columbia (+2.10) showed strong support for Biden, while rural states like West Virginia had negative coefficients, indicating a preference for Trump.
 
-```{r}
+```{r fig.width=8, fig.height=8}
 #| echo: false
 #| eval: true
 #| label: fig-regional_coefficient_estimates
-#| fig-cap: "Explanatory graph of support for the 2020 Presidential Candidates based on region, urban status, and state"
+#| fig-cap: "Graph of support for the 2020 Presidential Candidates based on region, urban status, and state"
 #| warning: false
 
 regional_coefficients <- tidy(regional_model, conf.int = TRUE)
@@ -364,11 +374,49 @@ regional_coefficients %>%
   labs(title = "Socio-Economic Coefficient Estimates",
        x = "Estimate", y = "Coefficient", color = "Candidate") +
   scale_color_manual(values = c("Biden" = "#0A3161", "Trump" = "#E81B23")) +  # Custom colors
-  theme(axis.text.y = element_text(size = 5),
+  theme(axis.text.y = element_text(size = 7),
         legend.position = "bottom")  # Move legend to bottom
 ```
+\newpage
+
+This figure graphically represents the findings from @tbl-regional_model_results, showcasing the geographical patterns in voting behavior. Regional variables demonstrated the geographical polarization of voter preferences, with stark differences between urban and rural areas, as well as among different states and regions. The strong negative coefficient for urban_statusRural Area and significant state-specific variations (e.g., District of Columbia vs. West Virginia) illustrate the geographical and cultural divides.
 
 # Discussion {#sec-discussion}
+This study presents a comprehensive examination of the factors influencing voter preferences for Joseph Biden and Donald J. Trump in the 2020 US Presidential Election. By analyzing identity-based, socio-economic, and regional variables through a series of logistic regression models, the paper uncovers insights into the electorate's behavior. Using data from the Cooperative Election Study 2020, we employed a series of logistic regression models to examine the influence of gender, age, race, education level, employment status, income, geographical region, urbanization level, and state-specific factors on electoral outcomes. This approach allows for a detailed understanding of how various demographic, economic, and geographical factors contributed to the election's outcome. 
+
+## Identity-Based Findings
+One key finding is the significant role of identity-based variables, such as race and gender, in shaping voter preferences. The analysis demonstrates that Black voters were markedly more likely to support Biden, while white and male voters showed a higher propensity to support Trump. This highlights the enduring impact of racial divisions within the American political landscape, underscoring the need for policies that address these deep-seated disparities. Furthermore, the gender gap observed, with males showing a higher likelihood of supporting Trump, points to differing political priorities and perceptions between men and women. These insights into the electoral impact of race and gender highlight the ongoing challenges of addressing inequality and fostering unity within the political landscape.
+
+Age emerged as another pivotal factor, revealing generational divides in political alignment. Younger voters' inclination towards Biden could reflect concerns about issues like climate change, social justice, and economic opportunity, areas where they may feel the Democratic platform offers more robust solutions. Conversely, older voters' support for Trump might be influenced by different priorities, such as economic policies, national security, and conservative social values. This generational split underscores the need for political strategies that bridge age-related divides, offering policies that cater to the diverse concerns and aspirations across age groups.
+
+These identity-based insights into the 2020 election reveal the complex interplay between social identities and political preferences, highlighting the need for inclusive, responsive policies that address the concerns of a diverse electorate. Understanding the nuanced influences of race, gender, and age on voting behavior is crucial for developing political strategies and policies that foster unity, address systemic inequalities, and meet the varied needs of the American people.
+
+
+## Socio-Economic Findings
+Another key finding was the socio-economic dynamics on electoral outcomes, underscoring the significance of socio-economic classes in shaping political preferences. Our analysis demonstrates clear distinctions in voting behavior across different education levels, eployment statuses, and incomes. For instance, employed versus unemployed divides emerge as a critical factor, with stronger support for Biden among unemployed individuals. Thus highlights the critical concern for economic recovery strategies and social safety nets, reflecting anxieties about job security and the desire for policies that promise economic stability and support. 
+
+Income levels provided another layer of insight, revealing a divide based on economic interests and perceived benefits from policy proposals. Lower income voters' inclination towards Biden may reflect a belief in the Democratic Party's commitment to economic policies aimed at wealth redistribution, affordable healthcare, and social welfare programs. In contrast, higher-income individuals, who might prioritize tax policies and economic strategies favorable to wealth preservation, exhibited a more varied political alignment, suggesting a nuanced calculation of economic interests and policy preferences.
+
+These socio-economic insights indicate a clear demand for political leadership that addresses the complex economic realities facing different segments of the American populace. They highlight the need for policies that bridge the economic divide, offering solutions that resonate with both lower and higher-income Americans while addressing the systemic issues of unemployment and economic insecurity.
+
+## Regional Findings
+A third key finding was the regional dynamics on electoral outcomes, underscoring the significance of geographic location in shaping political preferences. Our analysis demonstrates clear distinctions in voting behavior across different regions, urbanization levels, and states. For instance, urban versus rural divides emerge as a critical factor, with voters in urban areas showing a stronger inclination towards Biden, whereas those in rural areas were more likely to support Trump. This urban-rural polarization reflects broader socio-economic and cultural differences, suggesting that issues pertinent to urban centers resonate differently with those in rural communities. 
+
+Furthermore, the state-specific analysis provides insights into the localized nature of political support, illustrating how state-level policies, historical voting patterns, and local issues can influence voter preferences. States with diverse populations and a mix of urban and rural areas exhibited varied voting behaviors, highlighting the intricate interplay between state identity and political affiliation. For example, the strong support for Biden in the District of Columbia contrasted sharply with the preferences observed in more rural states, pointing to the significant influence of local contexts on electoral decisions.
+
+These regional insights are crucial for understanding the geographic segmentation of the American electorate and the challenges of crafting political messages that resonate across such a diverse landscape. They emphasize the need for policies and political strategies that address the specific concerns and priorities of different regions, ensuring that the voices of both urban and rural communities are heard and valued in the political discourse. 
+
+## Study Weaknesses
+Despite its comprehensive analysis, the study has limitations, notably in its reliance on self-reported data, which may introduce bias. Respondents may not always accurately recall their voting behavior or may portray it in a socially desirable manner, leading to discrepancies between reported and actual voting patterns. Furthermore, self-selection bias could arise if the individuals who choose to participate in the survey are not representative of the broader electorate, skewing the data towards particular demographic or political groups.
+
+Additionally, the models might not fully capture the complexity of voter behavior, as they cannot account for all possible confounding factors, such as media influence or personal political ideologies. While logistic regression models offer valuable insights into the factors influencing voter behavior, they have inherent limitations in capturing the full spectrum of human decision-making. Voter behavior is influenced by a complex interplay of factors, including emotional responses, social influences, and dynamic political landscapes, which may not be fully accounted for by the models used. The assumption of linear relationships between variables and voting behavior overlooks the possibility of non-linear dynamics and interactions between factors that could significantly influence electoral outcomes. Additionally, the models' inability to incorporate all potential confounding factors, such as the effect of media campaigns, political events leading up to the election, and individual political ideologies, may result in an incomplete understanding of voter behavior. 
+
+Furthermore, the decision to condense the sample size to 10,000 random participants, while necessary to manage time and space limitations, introduces another layer of complexity to the study's limitations and warrants a deeper examination of its implications. Reducing the sample size to a subset of the original dataset may impact the representativeness of the study. Although random sampling methods are designed to create a sample that reflects the larger population, decreasing the sample size increases the margin of error and the potential for sampling bias. This means that the smaller sample may not adequately capture the diversity and variability of the broader electorate, particularly the nuances of smaller demographic groups or regions with less representation.
+
+## Next Steps
+Future research should aim to incorporate more dynamic models that can better account for the multifaceted nature of political behavior and the influence of evolving societal trends. The advent of digital platforms has transformed how information is disseminated and consumed, significantly impacting political discourse and voter behavior. A next step would be to delve into the nuances of this digital revolution, examining the role of social media, online news outlets, and digital campaigning in shaping political opinions and electoral outcomes. This includes studying the effects of misinformation, echo chambers, and the role of algorithms in curating political content, as well as investigating strategies for fostering digital literacy and critical engagement with online content among the electorate.
+
+Studies could also expand the scope of research to include cross-cultural comparisons can enrich our understanding of electoral behavior in a global context. Examining how different political systems, cultural norms, and historical contexts influence voter behavior can uncover universal patterns and unique variations. This approach can facilitate a deeper understanding of democracy, governance, and political engagement across diverse societies, contributing to a more comprehensive global political science discourse.
 
 # Appendix {#sec-appendix}
 ```{r, echo=FALSE}
@@ -501,6 +549,7 @@ ggplot(voting_education, aes(x = "", y = value, fill = variable)) +
         axis.text = element_blank(), 
         axis.ticks = element_blank(),
         panel.grid = element_blank(),
+        strip.text = element_text(size = 6)
         )
 ```
 
@@ -520,7 +569,7 @@ voting_emplyment_status <- election_data %>%
 voting_emplyment_status <- reshape2::melt(voting_emplyment_status, id.vars = "employment_status")
 ```
 
-```{r}
+```{r fig.width=8}
 #| echo: false
 #| warning: false
 #| message: false
