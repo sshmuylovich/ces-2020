@@ -36,6 +36,7 @@ analysis_data <-
   raw_data |>
   filter(votereg == 1,
          CC20_410 %in% c(1,2),
+         birthyr > 0,
          gender %in% c(1,2),
          race %in% c(1, 2, 3, 4, 5, 8),
          educ %in% c(1:6),
